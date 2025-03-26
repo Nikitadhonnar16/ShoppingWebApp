@@ -13,7 +13,7 @@ import {
   MdKeyboardDoubleArrowRight,
 } from "react-icons/md";
 
-export const Sidebar = () => {
+ const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleSidebar = () => {
@@ -23,7 +23,7 @@ export const Sidebar = () => {
   return (
     <div
       className={` h-src transition-all duration-300 bg-gray-800 text-white border-t-2 border-t-gray-800 ${
-        isCollapsed ? "w-[80px]" : "w-[20%]"
+        isCollapsed ? "w-[80px]" : "w-[15%]"
       }`}
     >
       <div className="mx-7">
@@ -62,16 +62,17 @@ export const Sidebar = () => {
             <HiOutlineShoppingCart size={25} />
             {!isCollapsed && <label className="ml-6 cursor-pointer">Buy</label>}
           </Link>
-          <Link to="/categories" className="flex items-center cursor-pointer">
-            <HiOutlineViewList size={25} />
-            {!isCollapsed && (
-              <label className="ml-6 cursor-pointer">Categories</label>
-            )}
-          </Link>
+        
           <Link to="/contact" className="flex items-center cursor-pointer">
             <HiOutlinePhone size={25} />
             {!isCollapsed && (
               <label className="ml-6 cursor-pointer">Contact</label>
+            )}
+          </Link>
+          <Link to="/formdata" className="flex items-center cursor-pointer">
+            <HiOutlineViewList size={25} />
+            {!isCollapsed && (
+              <label className="ml-6 cursor-pointer">FormData</label>
             )}
           </Link>
         </div>
@@ -79,3 +80,5 @@ export const Sidebar = () => {
     </div>
   );
 };
+
+export default Sidebar;

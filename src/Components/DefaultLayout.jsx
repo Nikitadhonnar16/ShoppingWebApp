@@ -1,17 +1,17 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
-import { MainContent } from "./MainContent";
-const Layout = ({ children }) => {
+import { Outlet } from "react-router-dom";
+const DefaulytLayout = ({ children }) => {
   return (
   <>
     <Navbar/>
     <div className='flex'>
         <Sidebar/>
-      {children}
+        <Outlet /> 
     </div>
   </>
   );
 };
 
-export default Layout;
+export default DefaulytLayout;

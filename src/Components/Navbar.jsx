@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
-
+import { useSelector } from "react-redux";
 const Navbar = () => {
-  const [openProfile, SetOpenProfile] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const handleProfile = () => {
-    SetOpenProfile(!openProfile);
-  };
 
-  const login = isLoggedIn === "Logout";
+  const handleProfile = () => {
+    setOpenProfile(!openProfile);
+  };
 
   const handleLogin = () => {
-    setIsLoggedIn(!isLoggedIn);
+
+    navigate("/")
   };
+
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
 
   return (
     <div>
@@ -59,7 +62,7 @@ const Navbar = () => {
 
             {/* Search Bar */}
             <div className="flex-1 flex justify-center">
-              <div className="w-full sm:max-w-[250px]  max-w-[350px]">
+              <div className="w-full sm:max-w-[250px] max-w-[350px]">
                 <input
                   type="text"
                   className="w-full bg-transparent placeholder:text-slate-400 text-white text-sm border border-slate-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -69,10 +72,10 @@ const Navbar = () => {
             </div>
 
             {/* Right Section */}
-            <div className="absolute inset-y-0 right-0 flex items-center sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
+            <div className="absolute inset-y-0 right-0 flex items-center sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <button
                 type="button"
-                className="relative mr-3 rounded-full bg-gray-800 p-1 text-gray-400  focus:ring-offset-gray-800 cursor-pointer"
+                className="relative mr-3 rounded-full bg-gray-800 p-1 text-gray-400 focus:ring-offset-gray-800 cursor-pointer"
               >
                 <span className="sr-only">View notifications</span>
                 <svg
@@ -101,20 +104,18 @@ const Navbar = () => {
                   aria-haspopup="true"
                   onClick={handleProfile}
                 >
-                  {isLoggedIn ? (
+                  
                     <img
                       className="h-8 w-8 rounded-full"
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                       alt=""
                     />
-                  ) : (
-                    <CgProfile className="text-gray-400 h-8 w-8 " />
-                  )}
+               
                 </button>
               </div>
               {openProfile && (
                 <div
-                  className="absolute right-0 top-13 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 focus:outline-hidden"
+                  className="absolute right-0 top-13 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 focus:outline-none"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
@@ -146,7 +147,7 @@ const Navbar = () => {
                     id="user-menu-item-2"
                     onClick={handleLogin}
                   >
-                    {isLoggedIn ? "Logout" : "login / Signup"}
+                    {isAuthenticated ? "Logout" : "Login / Signup"}
                   </Link>
                 </div>
               )}

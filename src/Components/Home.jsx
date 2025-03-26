@@ -1,17 +1,12 @@
-import React from 'react'
-import Navbar from './Navbar'
-import { Sidebar } from './Sidebar'
-import { MainContent } from './MainContent'
+import React from "react";
+import { MainContent } from "./MainContent";
 
-export const Home = () => {
+const Home = () => {
   return (
-    <>
-        <Navbar/>
-        <div className='flex'>
-            <Sidebar/>
-            <MainContent/>
-        </div>
+    <div className="">
+      <MainContent />
+    </div>
+  );
+};
 
-    </>
-  )
-}
+export default Home;
